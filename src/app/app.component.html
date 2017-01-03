@@ -1,3 +1,27 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+  <h1>Dragula Test</h1>
+  <div class="row">
+    <pre class="col-xs-6">{{data | json}}</pre>
+    <div class="col-xs-6">
+      <form style="margin-bottom: 20px;">
+        <div class="form-group">
+          <label>Content</label>
+          <input #content class="form-control" type="text">
+        </div>
+        <button (click)="addItem(content.value)" class="btn btn-primary" type="button" click>Add</button>
+      </form>
+      <table class="table table-striped">
+        <thead>
+          <th>Content</th>
+          <th>Actions</th>
+        </thead>
+        <tbody [dragula]="'bag-one'" [dragulaModel]="data">
+          <tr *ngFor="let item of data; let i = index">
+            <td>{{item.content}}</td>
+            <td><i (click)="removeItem(i)" class="interactive-icon fa fa-trash-o fa-lg" aria-hidden="true"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
